@@ -8,38 +8,116 @@
     <style>
     @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap');
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
     <header class="encabezado">
+
+        
         <div class="header-container">
+            <div class="logo-container">
             <a href="index.html" class="logo-link">
-                <img src="/Imagenes/La_Esencia_parfum_store.png" alt="Logo La Esencia" width="120" height="120" class="logo-img">
+                <img src="/Imagenes/La_Esencia_parfum_store.png" alt="Logo La Esencia" width="200" height="70" class="logo-img">
             </a>
-            <nav>
-                <ul class="nav-list">
-                    <li><a href="#">Inicio</a></li>
-                    <li><a href="#">Categorias</a></li>
-                    <li><a href="usuario.html">Usuario</a></li>
-                    <li><a href="#">Bolsa</a></li>
-                </ul>
-            </nav>
-            <form action="" method="GET" class="search-form">
+            </div>
+            <div class="search-container">
+                <form action="" method="GET" class="search-form">
                 <input type="search" name="buscador" placeholder="Valentino..." />
-                <button type="submit">Buscar</button>
-            </form>
+                <button class="button-nav">
+                <i class="fa fa-search"></i>
+                </button>
+                </form>
+            </div>
+            <div class="options-nav">
+                <a href="#">Categorias</a>
+                <a href="usuario.html">Usuario</a>
+                <a href="#">Bolsa</a>
+            </div>
         </div>
     </header>
 
     <h2 class="ofertas-banner">¡Esencias más pedidas!</h2>
-    <main>
-        <section class="productos">
-             <!-- Los productos se mostrarán en aplicación.js-->
-        </section>
+   <main>
+            
+            <aside>
+               <ol>
+                    <li>Categoria 1</li>
+                    <li>Categoria 2</li>
+                    <li>Categoria 3</li>
+                    <li>Categoria 4</li>
+                </ol>
+            </aside>
 
-        <section class="cotizacion">
-            <!-- La tabla será generada por aplicacion.js -->
-        </section>
-    </main>
+            <aside class="nav-mobile">
+                menu movil
+            </aside>
+
+            <section class="product-section">
+
+                <div class="product-item">
+                    <a href="./product-detail.html">
+                        <div class="product-card">
+                            <img src="https://http2.mlstatic.com/D_NQ_NP_2X_790143-MLA70673937702_072023-F.webp" alt="Jean Paul Gaultier Le Beau Le Parfum 125ml" width="300px">
+                            <p>Jean Paul Gaultier Le Beau Le Parfum 125ml</p>
+                            <p>Precio: $177.600</p>
+                            <button>Añadir a la bolsa</button>
+                        </div>
+                    </a>
+                </div>
+                <div class="product-item">
+                    <a href="./product-detail.html">
+                        <div class="product-card">
+                            <img src="https://d3cdlnm7te7ky2.cloudfront.net/media/catalog/product/cache/1f1b8d9a1b49678555bea203c2f52e39/1/4/142880-a-one-million-elixir-parfum-intense-200ml.jpg" alt="One Million Elixir 100ml" width="300px">
+                            <p>One Million Elixir 100ml</p>
+                            <p>Precio: $176.400</p>
+                            <button>Añadir a la bolsa</button>
+                        </div>
+                    </a>
+                </div>
+                    <div class="product-item">
+                        <a href="./product-detail.html">
+                        <div class="product-card">
+                            <img src="https://d3cdlnm7te7ky2.cloudfront.net/media/catalog/product/cache/1f1b8d9a1b49678555bea203c2f52e39/r/v/rv139283.jpg" alt="Versace Dylan Blue Pour Homme 100ml" width="300px">
+                            <p>Versace Dylan Blue Pour Homme 100ml</p>
+                            <p>Precio: $196.000</p>
+                            <button>Añadir a la bolsa</button>
+                        </div>
+                    </a>
+                </div>
+                <div class="product-item">
+                    <a href="./product-detail.html">
+                        <div class="product-card">
+                            <img src="https://d3cdlnm7te7ky2.cloudfront.net/media/catalog/product/cache/1f1b8d9a1b49678555bea203c2f52e39/1/2/125747-a-stronger-with-you-intensely-for-him-edp-100ml.jpg" alt="Stronger With You Intensely For Him EDP 100ml" width="300px">
+                            <p>Stronger With You Intensely For Him EDP 100ml</p>
+                            <p>Precio: $289.000</p>
+                            <button>Añadir a la bolsa</button>
+                        </div>
+                    </a>
+                </div>
+                <div class="product-item">
+                    <a href="./product-detail.html">
+                        <div class="product-card">
+                            <img src="https://d3cdlnm7te7ky2.cloudfront.net/media/catalog/product/cache/1f1b8d9a1b49678555bea203c2f52e39/1/5/155114-a-club-de-nuit-intense-men-edt-105ml.jpg" alt="Club de Nuit Intense Man EDT 105ml" width="300px">
+                            <p>Club de Nuit Intense Man EDT 105ml</p>
+                            <p>Precio: $109.000</p>
+                            <button>Añadir a la bolsa</button>
+                        </div>
+                    </a>
+                </div>
+                <div class="product-item">
+                    <a href="./product-detail.html">
+                        <div class="product-card">
+                            <img src="https://d3cdlnm7te7ky2.cloudfront.net/media/catalog/product/cache/1f1b8d9a1b49678555bea203c2f52e39/1/4/147916-a-sauvage-elixir-100ml.jpg" alt="Dior Sauvage Elixir 100ml" width="300px">
+                            <p>Dior Sauvage Elixir 100ml</p>
+                            <p>Precio: $482.000</p>
+                            <button>Añadir a la bolsa</button>
+                        </div>
+                    </a>
+                </div>
+            </section>
+        </main>
+
+
     <footer>
         <div class="derechos">
         <p>2001 - 2025 La Esencia &copy; Todos los derechos reservados</p>
@@ -50,4 +128,5 @@
         </div>
     </footer>
 </body>
-<script src="../JS/aplicacion.js"></script>
+
+<!-- <script src="../JS/aplicacion.js"></script>

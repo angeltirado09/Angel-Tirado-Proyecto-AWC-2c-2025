@@ -8,3 +8,47 @@
     "wdth" 100,
     "YTLC" 500;
 }
+
+.header-container {
+    min-height: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    align-items: center;
+    border: 1px solid blue;
+    background-color: #FEFEFF;
+}
+
+.header-container .logo-container .logo-link .logo-img {
+    max-width: 100%;
+    height: auto;
+        border: 1px solid red;
+}
+
+
+.search-container {
+    display: flex;
+    align-items: center;
+    border: 1px solid green;
+}
+
+.search-container .button-nav i {
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    aspect-ratio: 1 / 1;
+    color: #333; /* O el color que prefieras */
+    font-size: 20px;
+}
+
+.options-nav {
+    display: flex;
+    gap: 20px;
+    border: 1px solid orange;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
