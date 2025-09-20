@@ -17,7 +17,7 @@
         <div class="header-container">
             <div class="logo-container">
             <a href="index.html" class="logo-link">
-                <img src="/Imagenes/La_Esencia_parfum_store.png" alt="Logo La Esencia" width="200" height="70" class="logo-img">
+                <img src="/Imagenes/la_esencia_logo.png" alt="Logo La Esencia" class="logo-img">
             </a>
             </div>
             <div class="search-container">
@@ -36,24 +36,38 @@
         </div>
     </header>
 
-    <h2 class="ofertas-banner">¡Esencias más pedidas!</h2>
+
+
    <main>
-            
-            <aside>
-               <ol>
-                    <li>Categoria 1</li>
-                    <li>Categoria 2</li>
-                    <li>Categoria 3</li>
-                    <li>Categoria 4</li>
-                </ol>
-            </aside>
+  <div class="main-content">
+    <aside class="filter-menu">
+      <h3>Filtros</h3>
+      <form>
+        <div class="filtro-seccion">
+          <h4>Marca</h4><br>
+          <label><input type="checkbox" name="marca" value="Dior"> Dior</label><br>
+          <label><input type="checkbox" name="marca" value="Versace"> Versace</label><br>
+          <label><input type="checkbox" name="marca" value="Jean Paul Gaultier"> Jean Paul Gaultier</label>
+        </div>
+        <hr>
+        <!-- Género -->
+        <div class="filtro-seccion">
+          <h4>Género</h4><br>
+          <label><input type="radio" name="genero" value="Hombre"> Hombre</label><br>
+          <label><input type="radio" name="genero" value="Mujer"> Mujer</label><br>
+          <label><input type="radio" name="genero" value="Unisex"> Unisex</label>
+        </div>
+        <hr>
+        <!-- Rango de precio -->
+        <div class="filtro-seccion">
+          <h4>Precio</h4><br>
+          <input type="range" name="precio" min="10000" max="500000" step="10000" value="250000" oninput="precioOutput.value = this.value">
+          <output id="precioOutput">250000</output>
+        </div>
+      </form>
+    </aside>
 
-            <aside class="nav-mobile">
-                menu movil
-            </aside>
-
-            <section class="product-section">
-
+    <section class="product-section">
                 <div class="product-item">
                     <a href="./product-detail.html">
                         <div class="product-card">
@@ -115,7 +129,8 @@
                     </a>
                 </div>
             </section>
-        </main>
+  </div>
+</main>
 
 
     <footer>
