@@ -14,8 +14,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px;
-    align-items: center;
+    padding: 60px;
     border: 1px solid blue;
     background-color: #FEFEFF;
 }
@@ -23,12 +22,21 @@
 .header-container .logo-container .logo-link .logo-img {
     max-width: 100%;
     height: auto;
-    border: 1px solid red;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 120px;
+    width: 350px;
 }
+
+.logo-container {
+    width: 350px; /* Igual al ancho del logo */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
 
 main {
     display: flex;
@@ -49,35 +57,50 @@ nav div {
     justify-content: center;
 }
 
+.search-container {
+    height: 50px; /* Igual o similar a la altura del logo */
+    display: flex;
+    align-items: center;
+}
+
 .search-container input[type="search"] {
     display: flex;
     align-items: center;
     background: #FEFEFF;
     border-radius: 32px 0px 0px 32px;
-    box-shadow: 0 1px 4px ;
+    box-shadow: 0 1px 4px 0 rgb(55, 10, 29);
     padding: 12px;
-    border: none;
+    border: 1px rgb(55, 10, 29);
     min-width: 320px;
     max-width: 400px;
     margin: 0 auto;
 }
 
+.search-form input[type="search"] {
+    height: 50px;
+    font-size: 16px;
+    padding: 0 18px;
+}
+
 .search-form input[type="search"]::placeholder {
-    color: #aaa;
+    color: #333;
     font-style: italic;
+    opacity: 0.5;
+    font-size: 16px;
 }
 
 .button-nav {
-    border: none;
+    border: 1px rgb(153, 139, 146);
     background: #f5f5f5;
     border-radius: 0 32px 32px 0;
-    box-shadow: 0 1px 4px ;
+    box-shadow: 0 1px 4px 0 rgb(55, 10, 29);
     padding: 0 18px;
     cursor: pointer;
     display: flex;
     align-items: center;
     transition: background 0.2s;
-    height: 40px;
+    height: 50px;
+    font-size: 22px;
 }
 
 .search-form {
@@ -96,8 +119,27 @@ nav div {
 
 .options-nav {
     display: flex;
-    gap: 20px;
-    border: 1px solid orange;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 30px;
+    height: 50px;
+
+}
+
+
+.options-nav a .fa {
+    font-size: 40px;
+    line-height: 50px;
+    vertical-align: middle;
+}
+.options-nav a {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .product-section {
@@ -115,6 +157,30 @@ nav div {
     text-align: center;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
+
+.product-item img {
+    height: 300px;
+    object-fit: contain;
+}
+
+.product-detail {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+
+.product-actions button {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
 
 .main-content {
     display: grid;
