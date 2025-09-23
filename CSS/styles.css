@@ -1,3 +1,4 @@
+/* Variables globales y fuente principal */
 :root {
     background-color: #FEFEFF;
     font-family: "Nunito Sans", sans-serif;
@@ -9,16 +10,23 @@
     "YTLC" 500;
 }
 
+/* Reset de márgenes y paddings */
+html, body {
+  width: 100%;
+  height: 100%;
+}
+
+/* Contenedor principal del header: logo, buscador, iconos etc */
 .header-container {
     min-height: 100px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 60px;
-    border: 1px solid blue;
     background-color: #FEFEFF;
 }
 
+/* Estilos para el logo de la página */
 .header-container .logo-container .logo-link .logo-img {
     max-width: 100%;
     height: auto;
@@ -28,16 +36,15 @@
     width: 350px;
 }
 
+/* Contenedor del logo, controla alineación y tamaño */
 .logo-container {
-    width: 350px; /* Igual al ancho del logo */
+    width: 350px;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-
-
-
+/* Contenedor principal del contenido y layout general */
 main {
     display: flex;
     flex-direction: row;
@@ -45,11 +52,48 @@ main {
     min-height: 60vh;
 }
 
+/* Barra de navegación de categorías debajo del header */
+.categorias-nav {
+    background: #3E0703;
+    border-bottom: 1px solid #eee;
+    width: 100%;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+}
 
+/* Lista de categorías, alineación y espaciado */
+.categorias-nav ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 120px;
+    list-style: none;
+    margin: 0;
+    padding: 12px 0;
+}
+
+/* Enlaces de categorías, color y estilo */
+.categorias-nav li a {
+    color: #FEFEFF;
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 1.08rem;
+    padding: 6px 14px;
+    border-radius: 20px;
+    transition: background-color 0.5s;
+}
+
+/* Efecto hover en los enlaces de categorías */
+.categorias-nav li a:hover {
+    background: #3E0703;
+    color: #fc9999;
+}
+
+/* Menú lateral de filtros */
 aside {
     width: 250px;
 }
 
+/* Contenedor para elementos dentro de nav */
 nav div {
     display: flex;
     gap: 20px;
@@ -57,12 +101,14 @@ nav div {
     justify-content: center;
 }
 
+/* Barra de búsqueda, alineación y altura */
 .search-container {
-    height: 50px; /* Igual o similar a la altura del logo */
+    height: 50px;
     display: flex;
     align-items: center;
 }
 
+/* Input de búsqueda, estilo y tamaño */
 .search-container input[type="search"] {
     display: flex;
     align-items: center;
@@ -76,12 +122,14 @@ nav div {
     margin: 0 auto;
 }
 
+/* Input de búsqueda dentro del formulario, altura y fuente */
 .search-form input[type="search"] {
     height: 50px;
     font-size: 16px;
     padding: 0 18px;
 }
 
+/* Estilo del texto placeholder en el input de búsqueda */
 .search-form input[type="search"]::placeholder {
     color: #333;
     font-style: italic;
@@ -89,6 +137,7 @@ nav div {
     font-size: 16px;
 }
 
+/* Botón de búsqueda con icono de lupa */
 .button-nav {
     border: 1px rgb(153, 139, 146);
     background: #f5f5f5;
@@ -103,6 +152,7 @@ nav div {
     font-size: 22px;
 }
 
+/* Formulario de búsqueda, alineación y estilo */
 .search-form {
     display: flex;
     align-items: center;
@@ -114,34 +164,43 @@ nav div {
     font-size: 16px;
     background: transparent;
     width: 220px;
-    color: #333;
+    color: rgb(55, 10, 29);
 }
 
+/* Contenedor de iconos de usuario, bolsa, favoritos, etc. */
 .options-nav {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-
     gap: 30px;
     height: 50px;
-
 }
 
-
+/* Tamaño y alineación de los iconos Font Awesome */
 .options-nav a .fa {
     font-size: 40px;
     line-height: 50px;
     vertical-align: middle;
 }
+
+/* Estilo de los enlaces de iconos en el header */
 .options-nav a {
     width: 50px;
     height: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
+    color: #3E0703;
+    transition: background-color 0.5s;
+
+    /* Cambia color al pasar el mouse */
+    &:hover {
+        color: #6b403d;
+    }
 }
 
+/* Grid de productos, cantidad de columnas y espaciado */
 .product-section {
     max-width: 900px;
     margin: 0 auto;
@@ -150,6 +209,7 @@ nav div {
     gap: 20px;
 }
 
+/* Tarjeta individual de producto, bordes y sombra */
 .product-item {
     border: 1px solid #ddd;
     border-radius: 8px;
@@ -158,11 +218,13 @@ nav div {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+/* Imagen del producto, tamaño y ajuste */
 .product-item img {
     height: 300px;
     object-fit: contain;
 }
 
+/* Contenedor de detalles y botón dentro de la tarjeta */
 .product-detail {
     display: flex;
     flex-direction: column;
@@ -170,18 +232,42 @@ nav div {
     height: 100%;
 }
 
+.product-text {
+    color: #3E0703;
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 6px 14px;
+    transition: background-color 0.5s;
+    margin-bottom: 12px;
 
+    &:hover{
+        color: #660B05;
+    }
+}
+
+.product-text .card-price {
+    margin-top: 8px;
+    font-size: 1rem;
+    color: #3E0703;
+    font-weight: 850;
+}
+
+/* Quitar subrayado a los enlaces de productos */
+.product-section a{
+    text-decoration: none;
+}
+/* Botón "Añadir a la bolsa" en cada producto */
 .product-actions button {
-    background-color: #007BFF;
-    color: white;
+    background-color: #3E0703;
+    color: #FEFEFF;
     border: none;
     padding: 10px 20px;
-    border-radius: 4px;
+    border-radius: 10px;
     cursor: pointer;
     transition: background-color 0.3s;
 }
 
-
+/* Contenedor principal de productos y filtros */
 .main-content {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -189,6 +275,7 @@ nav div {
     align-items: flex-start;
 }
 
+/* Menú de filtros lateral, fondo y padding */
 .filter-menu {
     width: 220px;
     background: #fff;
@@ -196,5 +283,130 @@ nav div {
     box-shadow: 0 2px 8px rgba(0,0,0,0.08);
     padding: 24px 16px;
     margin-top: 0;
+}
+
+/* Pie de página, color de fondo y texto */
+footer {
+    background-color: #3E0703;
+    color: #FEFEFF;
+    text-align: center;
+    padding: 60px 0 32px 0;
+    border-top: 1px solid #e7e7e7;
+    margin-top: 40px;
+    font-size: 1rem;
+}
+
+/* Enlaces dentro del footer, color y estilo */
+footer a {
+    color: #FEFEFF;
+    text-decoration: underline;
+    margin: 0 12px;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+/* Efecto hover en los enlaces del footer */
+footer a:hover {
+    color: #fc9999;
+}
+
+/* Media Queries para pantallas de celu como la del iphone */
+@media (max-width: 600px) {
+    .header-container {
+        /* Header en columna para móviles */
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 24px 12px;
+    }
+
+    .logo-container {
+        /* Logo ocupa todo el ancho en móviles */
+        width: 100%;
+        justify-content: flex-start;
+    }
+
+    .search-container {
+        /* Barra de búsqueda ocupa todo el ancho en móviles */
+        width: 100%;
+        margin: 16px 0;
+        height: auto;
+    }
+
+    .options-nav {
+        /* Iconos centrados y con menos espacio en móviles */
+        gap: 18px;
+        height: auto;
+        margin-bottom: 12px;
+        width: 100%;
+        justify-content: center;
+    }
+
+    .categorias-nav ul {
+        /* Categorías en columna en móviles */
+        flex-direction: column;
+        gap: 12px;
+        padding: 8px 0;
+    }
+
+    .categorias-nav {
+        /* Sin sombra ni borde en móviles */
+        box-shadow: none;
+        border-bottom: none;
+        background: #3E0703;
+    }
+
+    main {
+        /* Layout vertical en móviles */
+        flex-direction: column;
+        padding: 12px;
+        min-height: auto;
+    }
+
+    .main-content {
+        /* Contenido principal en bloque en móviles */
+        display: block;
+        gap: 0;
+    }
+
+    .filter-menu {
+        /* Filtros ocupan todo el ancho en móviles */
+        width: 100%;
+        margin-bottom: 18px;
+        box-shadow: none;
+        border-radius: 0;
+        padding: 16px 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .product-section {
+        /* Productos en una sola columna en móviles */
+        grid-template-columns: 1fr;
+        max-width: 100%;
+        gap: 16px;
+        margin: 0;
+    }
+
+    .product-item {
+        /* Tarjetas de producto más pequeñas en móviles */
+        padding: 12px;
+        min-width: 0;
+    }
+
+    .product-item img {
+        /* Imágenes de producto más chicas en móviles */
+        height: 180px;
+    }
+
+    footer {
+        /* Footer con menos padding y fuente más chica en móviles */
+        padding: 32px 0 16px 0;
+        font-size: 0.95rem;
+    }
+
+    .search-container input[type="search"] {
+        /* Input de búsqueda ocupa todo el ancho en móviles */
+        min-width: 100%;
+        max-width: 100%;
+    }
 }
 
