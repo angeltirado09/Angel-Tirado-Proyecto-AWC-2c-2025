@@ -44,6 +44,14 @@ html, body {
     justify-content: center;
 }
 
+.titulo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #3E0703;
+    margin: 30px;
+}
+
 /* Contenedor principal del contenido y layout general */
 main {
     display: flex;
@@ -156,6 +164,7 @@ nav div {
 .search-form {
     display: flex;
     align-items: center;
+    justify-content: center;
     width: 100%;
     border: none;
     outline: none;
@@ -216,6 +225,11 @@ nav div {
     padding: 16px;
     text-align: center;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.5s;
+
+    &:hover {
+        transform: translateY(-5px);
+    }
 }
 
 /* Imagen del producto, tamaño y ajuste */
@@ -265,6 +279,10 @@ nav div {
     border-radius: 10px;
     cursor: pointer;
     transition: background-color 0.3s;
+
+    &:hover {
+        background-color: #660B05;
+    }
 }
 
 /* Contenedor principal de productos y filtros */
@@ -294,6 +312,24 @@ footer {
     border-top: 1px solid #e7e7e7;
     margin-top: 40px;
     font-size: 1rem;
+}
+
+
+/* Contenedor flex dentro del footer para distribuir elementos */
+.footer-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+}
+
+.footer-container .footer-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
 }
 
 /* Enlaces dentro del footer, color y estilo */
