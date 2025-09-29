@@ -366,6 +366,7 @@ footer a:hover {
         width: 100%;
         margin: 16px 0;
         height: auto;
+        justify-content: center;
     }
 
     .options-nav {
