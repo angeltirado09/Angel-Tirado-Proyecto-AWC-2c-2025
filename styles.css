@@ -347,6 +347,65 @@ footer a:hover {
     color: #fc9999;
 }
 
+
+/* --- Estilos para Carrusel de fragancias --- */
+
+.carrusel-scroll-container {
+    max-width: 1400px;
+    margin: 30px auto;
+    position: relative; /* Para la navegación de puntos */
+}
+
+.carrusel-track {
+    display: flex;
+    overflow-x: auto; /* Permite el scroll horizontal */
+    scroll-snap-type: x mandatory; /* ¡La magia principal! Activa el snap en el eje X */
+    -webkit-overflow-scrolling: touch; /* Scroll suave en iOS */
+    scrollbar-width: none; /* Oculta la barra de scroll en Firefox */
+}
+
+/* Oculta la barra de scroll en Chrome, Safari, etc. */
+.carrusel-track::-webkit-scrollbar {
+    display: none;
+}
+
+.carrusel-item {
+    flex: 0 0 100%; /* Cada item ocupa el 100% del ancho del contenedor */
+    width: 100%;
+    scroll-snap-align: start; /* Cada item se "pega" al inicio del contenedor */
+    scroll-snap-stop: always; /* Asegura que el scroll se detenga en cada item */
+}
+
+.carrusel-item img {
+    width: 100%;
+    height: 400px; /* Altura fija */
+    object-fit: cover; /* Evita que la imagen se deforme */
+    display: block; /* Elimina un pequeño espacio debajo de la imagen */
+}
+
+/* Estilos para la navegación de puntos */
+.carrusel-nav {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+}
+
+.carrusel-nav a {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(0,0,0,0.2);
+    transition: background-color 0.3s ease;
+}
+
+.carrusel-nav a:hover {
+    background-color: #FEFEFF;
+}
+
 /* Media Queries para pantallas de celu como la del iphone */
 @media (max-width: 600px) {
     .header-container {
@@ -445,6 +504,18 @@ footer a:hover {
         /* Input de búsqueda ocupa todo el ancho en móviles */
         min-width: 100%;
         max-width: 100%;
+    }
+
+    .carrusel-scroll-container {
+        margin: 15px auto;
+        max-width: 100%;
+        overflow: hidden;
+        
+    }
+    .carrusel-item img {
+        height: 120px;
+        object-fit: cover;
+        display: block; /* Elimina un pequeño espacio debajo de la imagen */
     }
 }
 

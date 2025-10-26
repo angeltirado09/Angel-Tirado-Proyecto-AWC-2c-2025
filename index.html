@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Esencia</title>
+    <link rel="stylesheet" href="/styles.css">
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap');
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+</head>
+
+
+<body>
+    <header class="encabezado">
+        <div class="header-container">
+            <div class="logo-container">
+            <a href="index.html" class="logo-link">
+                <img src="/Imagenes/la_esencia_logo.png" alt="Logo La Esencia" class="logo-img" width="350px" height="50px">
+            </a>
+            </div>
+            <div class="search-container">
+                <form action="" method="GET" class="search-form">
+                <input type="search" name="buscador" placeholder="Valentino..." />
+                <button class="button-nav">
+                <i class="fa fa-search"></i>
+                </button>
+                </form>
+            </div>
+            <div class="options-nav">
+                <a href="favoritos.html" class="favoritos-link" title="Favoritos">
+                  <span class="material-symbols-outlined" style="font-size:28px;vertical-align:middle;">favorite</span>
+                </a>
+                <a href="usuario.html" class="usuario-link" title="Usuario">
+                  <span class="material-symbols-outlined" style="font-size:28px;vertical-align:middle;">person</span>
+                </a>
+                <a href="bolsa.html" class="bolsa-link" title="Bolsa">
+                  <span class="material-symbols-outlined" style="font-size:28px;vertical-align:middle;">local_mall</span>
+                </a>
+            </div>
+        </div>
+                <!-- Menú de categorías debajo del header -->
+            <nav class="categorias-nav">
+                <ul>
+                    <li><a href="#">Perfumes Mujer</a></li>
+                    <li><a href="#">Perfumes Hombre</a></li>
+                    <li><a href="#">Unisex</a></li>
+                    <li><a href="#">Novedades</a></li>
+                    <li><a href="#">Ofertas</a></li>
+                    <li><a href="#">Marcas</a></li>
+                </ul>
+            </nav>
+
+            <div class="carrusel-scroll-container">
+                <div class="carrusel-track">
+                    <div class="carrusel-item" id="slide-1">
+                        <img src="https://lasfragancias.vtexassets.com/assets/vtex.file-manager-graphql/images/0f1c70e1-167f-4d2e-9eb8-9b1cd33f4974___398815ba9beccfac5689f35a0f6d8c67.jpg" alt="Banner de perfumes 1">
+                    </div>
+                    <div class="carrusel-item" id="slide-2">
+                        <img src="https://www.edgars.co.za/cdn/shop/files/agency_3_VDB_PF_1920x500_ingredients.jpg?v=1758529322&width=2400" alt="Banner de perfumes 2">
+                    </div>
+                    <div class="carrusel-item" id="slide-3">
+                        <img src="https://d22fxaf9t8d39k.cloudfront.net/fffbb3db2e9a59e154173936a47b53046f924639caea976c2e6bc394ee3bef72376915.jpg" alt="Banner de perfumes 3">
+                    </div>
+                </div>
+            
+            <div class="carrusel-nav">
+                <a href="#slide-1"></a>
+                <a href="#slide-2"></a>
+                <a href="#slide-3"></a>
+            </div>
+        </div>
+
+        <div class="titulo">
+            <h1>Fragancias Esenciales</h1>
+        </div>
+    </header>
+
+
+
+<main>
+
+  <div class="main-content">
+    <aside class="filter-menu">
+      <h3>Filtros</h3>
+      <form>
+        <div class="filtro-seccion">
+          <h4>Marca</h4>
+          <label><input type="checkbox" name="marca" value="Dior"> Dior</label><br>
+          <label><input type="checkbox" name="marca" value="Versace"> Versace</label><br>
+          <label><input type="checkbox" name="marca" value="Jean Paul Gaultier"> Jean Paul Gaultier</label>
+        </div>
+        <hr>
+        <!-- Género -->
+        <div class="filtro-seccion">
+          <h4>Género</h4>
+          <label><input type="radio" name="genero" value="Hombre"> Hombre</label><br>
+          <label><input type="radio" name="genero" value="Mujer"> Mujer</label><br>
+          <label><input type="radio" name="genero" value="Unisex"> Unisex</label>
+        </div>
+        <hr>
+        <!-- Rango de precio -->
+        <div class="filtro-seccion">
+          <h4>Precio</h4>
+          <input type="range" name="precio" min="10000" max="500000" step="10000" value="250000" oninput="precioOutput.value = this.value">
+          <output id="precioOutput">250000</output>
+        </div>
+      </form>
+    </aside>
+
+
+    <section class="product-section">
+    <!-- los productos están en 'aplicacion.js' -->
+</section>
+  </div>
+</main>
+
+
+<footer>
+    <div class="footer-container">
+        <div class="footer-derechos">
+            <p><b>La Esencia</b>, fragancia a tus sentidos</p>
+            <p>2001 - 2025 La Esencia &copy; Todos los derechos reservados</p>
+        </div>
+        <div class="links_contacto">
+            <p><b>Contacto</b></p>
+            <p>Tel: +54 11 1234-5678</p>
+            <p>info@la-esencia.com.ar</p>
+            <div class="social-media">
+                <a href="https://www.facebook.com/LaEsencia" target="_blank">
+                    <i class="fa fa-facebook"></i>
+                </a>
+                <a href="https://www.instagram.com/LaEsencia" target="_blank">
+                    <i class="fa fa-instagram"></i>
+                </a>
+                <a href="https://www.twitter.com/LaEsencia" target="_blank">
+                    <i class="fa fa-twitter"></i>
+                </a>
+            </div>
+        </div>
+            <div class="footer-links">
+                <a href="./nosotros.html">Nosotros</a>
+                <a href="./privacidad.html">Política de Privacidad</a>
+                <a href="./terminos.html">Términos y Condiciones</a>
+            </div>
+        </div>
+</footer>
+
+</body>
+
+<script src="aplicacion.js"></script>
