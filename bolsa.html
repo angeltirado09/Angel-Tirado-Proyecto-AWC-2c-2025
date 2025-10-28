@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Bolsa - La Esencia</title>
+    
+    <link rel="stylesheet" href="/styles.css"> 
+    <link rel="stylesheet" href="/bolsa.css"> 
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap');
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+</head>
+
+<body>
+    <header class="encabezado">
+        <div class="header-container">
+            <div class="logo-container">
+            <a href="index.html" class="logo-link">
+                <img src="/Imagenes/la_esencia_logo.png" alt="Logo La Esencia" class="logo-img" width="350px" height="50px">
+            </a>
+            </div>
+            <div class="search-container">
+                <form action="" method="GET" class="search-form">
+                <input type="search" name="buscador" placeholder="Valentino..." />
+                <button class="button-nav">
+                <i class="fa fa-search"></i>
+                </button>
+                </form>
+            </div>
+            <div class="options-nav">
+                <a href="favoritos.html" class="favoritos-link" title="Favoritos">
+                  <span class="material-symbols-outlined" style="font-size:28px;vertical-align:middle;">favorite</span>
+                </a>
+                <a href="usuario.html" class="usuario-link" title="Usuario">
+                  <span class="material-symbols-outlined" style="font-size:28px;vertical-align:middle;">person</span>
+                </a>
+                <a href="bolsa.html" class="bolsa-link" title="Bolsa">
+                  <span class="material-symbols-outlined" style="font-size:28px;vertical-align:middle;">local_mall</span>
+                  <span class="badge-contador" id="cart-count"></span>
+                </a>
+            </div>
+        </div>
+        <nav class="categorias-nav">
+            <ul>
+                <li><a href="#">Perfumes Mujer</a></li>
+                <li><a href="#">Perfumes Hombre</a></li>
+                <li><a href="#">Unisex</a></li>
+                <li><a href="#">Novedades</a></li>
+                <li><a href="#">Ofertas</a></li>
+                <li><a href="#">Marcas</a></li>
+            </ul>
+        </nav>
+        </header>
+
+    <main class="main-bolsa">
+        <div class="titulo">
+            <h1>Mi Bolsa</h1>
+        </div>
+
+        <div class="bolsa-container">
+            
+            <section class="bolsa-items-list">
+                </section>
+
+            <aside class="bolsa-resumen">
+                <h3>Resumen de tu compra</h3>
+                <div class="resumen-linea">
+                    <p>Subtotal</p>
+                    <p id="resumen-subtotal">$0</p>
+                </div>
+                <div class="resumen-linea">
+                    <p>Envío</p>
+                    <p id="resumen-envio">Gratis</p>
+                </div>
+                <hr>
+                <div class="resumen-linea resumen-total">
+                    <p>Total</p>
+                    <p id="resumen-total">$0</p>
+                </div>
+                <button class="btn-finalizar-compra">Finalizar Compra</button>
+                <button class="btn-vaciar-bolsa">Vaciar Bolsa</button>
+            </aside>
+        </div>
+    </main>
+
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-derechos">
+                <p><b>La Esencia</b>, fragancia a tus sentidos</p>
+                <p>2001 - 2025 La Esencia &copy; Todos los derechos reservados</p>
+            </div>
+            <div class="links_contacto">
+                <p><b>Contacto</b></p>
+                <p>Tel: +54 11 1234-5678</p>
+                <p>info@la-esencia.com.ar</p>
+                <div class="social-media">
+                    <a href="https://www.facebook.com/LaEsencia" target="_blank">
+                        <i class="fa fa-facebook"></i>
+                    </a>
+                    <a href="https://www.instagram.com/LaEsencia" target="_blank">
+                        <i class="fa fa-instagram"></i>
+                    </a>
+                    <a href="https://www.twitter.com/LaEsencia" target="_blank">
+                        <i class="fa fa-twitter"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <a href="./nosotros.html">Nosotros</a>
+                <a href="./privacidad.html">Política de Privacidad</a>
+                <a href="./terminos.html">Términos y Condiciones</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="bolsa.js"></script>
+</body>
+</html>
