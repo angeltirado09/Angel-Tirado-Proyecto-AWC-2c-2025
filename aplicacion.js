@@ -1,4 +1,4 @@
-// ...existing code...
+// agrego productos para la tienda
 document.addEventListener("DOMContentLoaded", () => {
     const products = [
         {id: 1, name: "Jean Paul Gaultier Le Beau Le Parfum 125ml", price: 177600, image: "https://http2.mlstatic.com/D_NQ_NP_2X_790143-MLA70673937702_072023-F.webp"},
@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
     }
 
-    // --- LocalStorage cart helpers ---
+
     function getCart() {
         try {
             return JSON.parse(localStorage.getItem('cart')) || [];
@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return getCart().reduce((acc, it) => acc + (it.qty || 0), 0);
     }
 
-    // --- UI functions ---
+    // funciones para la interfaz de usuario
     function renderCartCount() {
         const cartCountBadge = document.getElementById('cart-count');
         if (!cartCountBadge) return;
@@ -62,7 +62,6 @@ document.addEventListener("DOMContentLoaded", () => {
             const productoDiv = document.createElement("div");
             productoDiv.classList.add("product-item");
 
-            // Cambié el enlace para llevar el id en la query string
             productoDiv.innerHTML = `
                 <a href="./producto.html?id=${producto.id}" class="product-link" data-id="${producto.id}">
                     <div class="product-card">
@@ -83,7 +82,7 @@ document.addEventListener("DOMContentLoaded", () => {
             productContainer.appendChild(productoDiv);
         });
 
-        // listeners para botones "Añadir a la bolsa"
+        // manejadores de eventos a los botones "Añadir a la bolsa"
         const botones = productContainer.querySelectorAll('.product-actions button');
         botones.forEach(boton => {
             boton.addEventListener('click', (evento) => {
@@ -95,13 +94,12 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // inicializar
+    // inicio
     mostrarProductos(products);
     renderCartCount();
 
-    // Opcional: actualizar badge si se cambia localStorage desde otra pestaña
+    // por si hay cambios desde otra pestaña
     window.addEventListener('storage', (e) => {
         if (e.key === 'cart') renderCartCount();
     });
 });
-// ...existing code...

@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
         {id: 9, name: "Lattafa Khamrah Qahwa 100ml", price: 65000, image: "https://perfume-malaysia.com/wp-content/uploads/2024/08/khamrah-qahwa.jpg", brand: "Lattafa", description: "Una versión intensa y adictiva con un toque de café arábigo. Combina la calidez del Khamrah original con la energía del cardamomo y el praliné, creando una estela gourmand inolvidable."}
     ];
 
-    // --- Lógica del Carrito
+    // Lógica del Carrito pero para el boton añadir a la bolsa dentro de la pagina producto
     function getCart() {
         try {
             return JSON.parse(localStorage.getItem('cart')) || [];
@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
         cartCountBadge.style.display = total > 0 ? 'inline-block' : 'none';
     }
 
-    // --- Lógica de la Página del Producto ---
+    // Lógica de la Página del Producto
 
     const urlParams = new URLSearchParams(window.location.search);
     const productId = parseInt(urlParams.get('id'), 10);
@@ -75,11 +75,11 @@ document.addEventListener('DOMContentLoaded', () => {
         productInstallments.textContent = `6 cuotas sin interés de $${(product.price / 6).toLocaleString('es-AR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
         productDescription.textContent = product.description;
 
-        // Añadir funcionalidad al botón
+        // funcionalidad del botón añadir a la bolsa
         if (addButton) {
             addButton.addEventListener('click', () => {
                 addToCart(product.id);
-                // Feedback visual para el usuario
+                // cambia a añadido cuando agregás el producto
                 const originalText = addButton.textContent;
                 addButton.textContent = '¡Añadido!';
                 addButton.disabled = true;
@@ -95,7 +95,7 @@ document.addEventListener('DOMContentLoaded', () => {
         productContainer.innerHTML = '<h1>Producto no encontrado</h1><p>El producto que buscas no existe o fue removido. <a href="index.html">Volver a la página principal</a>.</p>';
     }
 
-    // --- Inicialización y Sincronización ---
+    // inicio
     renderCartCount();
     window.addEventListener('storage', (e) => {
         if (e.key === 'cart') {
