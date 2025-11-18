@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const loginMessage = document.getElementById("login-message");
             const registerMessage = document.getElementById("register-message");
 
-            // --- Lógica de Registro ---
+            // registro
             registerForm.addEventListener("submit", (e) => {
                 e.preventDefault(); // Prevenir envío de formulario
                 
@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 const email = document.getElementById("register-email").value;
                 const password = document.getElementById("register-password").value;
 
-                // Obtener usuarios existentes de localStorage o crear array vacío
+                // Obtener usuarios existentes
                 let users = JSON.parse(localStorage.getItem('laEsenciaUsers')) || [];
 
                 // Verificar si el email ya existe
@@ -23,37 +23,34 @@ document.addEventListener("DOMContentLoaded", () => {
                     showMessage(registerMessage, "Este email ya está registrado.", "error");
                 } else {
                     // Agregar nuevo usuario
-                    const newUser = { name, email, password }; // NUNCA guardes contraseñas así en producción
+                    const newUser = { name, email, password };
                     users.push(newUser);
                     localStorage.setItem('laEsenciaUsers', JSON.stringify(users));
                     
                     showMessage(registerMessage, "¡Registro exitoso! Ya puedes iniciar sesión.", "success");
-                    registerForm.reset(); // Limpiar formulario
+                    registerForm.reset(); 
                 }
             });
 
-            // --- Lógica de Inicio de Sesión ---
+            // inicio sesion
             loginForm.addEventListener("submit", (e) => {
                 e.preventDefault();
 
                 // Obtener valores
                 const email = document.getElementById("login-email").value;
                 const password = document.getElementById("login-password").value;
-
                 // Obtener usuarios
                 let users = JSON.parse(localStorage.getItem('laEsenciaUsers')) || [];
-
                 // Buscar usuario
                 const user = users.find(user => user.email === email && user.password === password);
 
                 if (user) {
-                    // Usuario encontrado
+                    // si encuentra user lo redirige
                     showMessage(loginMessage, `¡Bienvenido, ${user.name}! Redirigiendo...`, "success");
                     
-                    // Guardar sesión (sessionStorage se borra al cerrar el navegador)
+                    // Guardar sesión
                     sessionStorage.setItem('loggedInUser', JSON.stringify(user));
 
-                    // Redirigir al inicio después de 2 segundos
                     setTimeout(() => {
                         window.location.href = 'index.html';
                     }, 2000);
@@ -64,9 +61,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             });
 
-            // --- Función para mostrar mensajes ---
+            // mostrar mensaejs
             function showMessage(element, text, type) {
                 element.textContent = text;
-                element.className = `message ${type}`; // 'message success' o 'message error'
+                element.className = `message ${type}`; // mensaje
             }
         });
