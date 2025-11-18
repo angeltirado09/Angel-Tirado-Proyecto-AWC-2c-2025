@@ -6,12 +6,13 @@
 .bolsa-container {
     display: grid;
     grid-template-columns: 2fr 1fr; /* 2/3 para items, 1/3 para resumen */
-    gap: 32px;
+    gap: 100px;
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
     /* Alinea el resumen arriba, por si la lista de items es muy larga */
-    align-items: flex-start; [cite: 176]
+    align-items: center;
+    justify-content: center; 
 }
 
 /* Título "Mi Bolsa" (reutiliza el estilo .titulo que ya tienes) */
@@ -38,7 +39,7 @@
     text-align: center;
     padding: 40px;
     background: #f9f9f9;
-    border-radius: 8px; [cite: 164]
+    border-radius: 8px;  
 }
 
 /* Tarjeta individual para cada item en la bolsa */
@@ -48,16 +49,16 @@
     gap: 16px;
     align-items: center;
     padding: 16px;
-    border: 1px solid #ddd; [cite: 164]
+    border: 1px solid #ddd;  
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); [cite: 164]
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
 /* Imagen del producto (70x70) */
 .bolsa-item-img img {
     width: 70px;
     height: 70px;
-    object-fit: contain; [cite: 167]
+    object-fit: contain;
     border-radius: 4px;
 }
 
@@ -69,7 +70,7 @@
 }
 
 .item-nombre {
-    font-weight: 600; [cite: 142]
+    font-weight: 600;
     color: #3E0703;
     font-size: 0.95rem;
     margin: 0;
@@ -88,8 +89,8 @@
     text-align: center;
     border: 1px solid #ccc;
     border-radius: 4px;
-    font-family: "Nunito Sans", sans-serif; [cite: 129]
-    font-size: 1rem; [cite: 150]
+    font-family: "Nunito Sans", sans-serif;
+    font-size: 1rem;
 }
 
 /* Precio Total del Item (Precio * Cantidad) */
@@ -123,9 +124,9 @@
 .bolsa-resumen {
     background: #fdfdfd;
     border: 1px solid #eee;
-    border-radius: 12px; [cite: 177]
+    border-radius: 12px;
     padding: 24px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08); [cite: 177]
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
     /* Se "pega" arriba mientras scrolleas */
     position: sticky;
     top: 20px; 
@@ -140,7 +141,7 @@
 
 .resumen-linea {
     display: flex;
-    justify-content: space-between; [cite: 133]
+    justify-content: space-between;
     margin-bottom: 12px;
     font-size: 1rem;
 }
@@ -151,26 +152,26 @@
 
 .resumen-total {
     font-size: 1.3rem;
-    font-weight: 800; [cite: 171]
+    font-weight: 800;
     color: #3E0703;
 }
 
 .bolsa-resumen hr {
     border: 0;
-    border-top: 1px solid #eee; [cite: 139]
+    border-top: 1px solid #eee;
     margin: 16px 0;
 }
 
 /* Botones del Resumen */
 .btn-finalizar-compra, .btn-vaciar-bolsa {
     /* Reutilizamos estilos del botón de 'Añadir a la bolsa' */
-    background-color: #3E0703; [cite: 173]
-    color: #FEFEFF; [cite: 173]
-    border: none; [cite: 173]
+    background-color: #3E0703;
+    color: #FEFEFF;
+    border: none;
     padding: 12px 20px;
-    border-radius: 10px; [cite: 173]
+    border-radius: 10px;
     cursor: pointer;
-    transition: background-color 0.3s; [cite: 173]
+    transition: background-color 0.3s;
     width: 100%;
     font-size: 1rem;
     font-weight: 600;
@@ -178,7 +179,7 @@
 }
 
 .btn-finalizar-compra:hover {
-    background-color: #660B05; [cite: 174]
+    background-color: #660B05;
 }
 
 .btn-vaciar-bolsa {
@@ -197,8 +198,8 @@
 @media (max-width: 768px) {
     .bolsa-container {
         /* 1 sola columna en móviles */
-        grid-template-columns: 1fr; [cite: 208]
-        padding: 12px; [cite: 204]
+        grid-template-columns: 1fr;
+        padding: 12px;
     }
 
     .bolsa-resumen {
@@ -241,4 +242,22 @@
         justify-self: end;
         align-self: start;
     }
+
+    .categorias-nav {
+    background: #3E0703;
+    border-bottom: 1px solid #eee;
+    width: 100%;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+}
+
+/* Lista de categorías, alineación y espaciado */
+.categorias-nav ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 120px;
+    list-style: none;
+    margin: 0;
+    padding: 12px 0;
+}
 }

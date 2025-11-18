@@ -52,7 +52,6 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!cartCountBadge) return;
         const total = getCartTotalQuantity();
         cartCountBadge.innerText = total > 0 ? total : '';
-        // Para que el contador sea visible, necesitamos un estilo. Lo añadiré a styles.css
         cartCountBadge.style.display = total > 0 ? 'inline-block' : 'none';
     }
 
@@ -63,8 +62,9 @@ document.addEventListener("DOMContentLoaded", () => {
             const productoDiv = document.createElement("div");
             productoDiv.classList.add("product-item");
 
+            // Cambié el enlace para llevar el id en la query string
             productoDiv.innerHTML = `
-                <a href="./producto.html">
+                <a href="./producto.html?id=${producto.id}" class="product-link" data-id="${producto.id}">
                     <div class="product-card">
                         <img src="${producto.image}" alt="${producto.name}">
                         <div class="product-detail">
@@ -83,7 +83,7 @@ document.addEventListener("DOMContentLoaded", () => {
             productContainer.appendChild(productoDiv);
         });
 
-        // añadir listeners a botones recién creados
+        // listeners para botones "Añadir a la bolsa"
         const botones = productContainer.querySelectorAll('.product-actions button');
         botones.forEach(boton => {
             boton.addEventListener('click', (evento) => {
