@@ -54,7 +54,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const urlParams = new URLSearchParams(window.location.search);
     const productId = parseInt(urlParams.get('id'), 10);
-    const product = products.find(p => p.id === productId);
+    const airtableId = urlParams.get('airtableId');
+
+    // Si viene airtableId buscamos en localStorage productsAirtable (guardados por aplicacion.js)
+    let product = null;
+    let productFromAirtable = false;
+    if (airtableId) {
+        try {
+            const stored = JSON.parse(localStorage.getItem('productsAirtable') || '[]');
+            product = stored.find(p => p.recordId === airtableId) || null;
+            if (product) productFromAirtable = true;
+        } catch (e) {
+            console.warn('No se pudo leer productsAirtable desde localStorage', e);
+        }
+    }
+
+    if (!product && !isNaN(productId)) {
+        product = products.find(p => p.id === productId) || null;
+    }
 
     if (product) {
         document.title = `${product.name} - La Esencia`;
@@ -67,18 +84,27 @@ document.addEventListener('DOMContentLoaded', () => {
         const productDescription = document.querySelector('.producto-descripcion p');
         const addButton = document.querySelector('.boton-anadir');
 
-        productImage.src = product.image;
-        productImage.alt = product.name;
-        productName.textContent = product.name;
-        productBrand.textContent = product.brand;
-        productPrice.textContent = `$${product.price.toLocaleString('es-AR')}`;
-        productInstallments.textContent = `6 cuotas sin interés de $${(product.price / 6).toLocaleString('es-AR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
-        productDescription.textContent = product.description;
+        productImage.src = product.image || '';
+        productImage.alt = product.name || '';
+        productName.textContent = product.name || '';
+        productBrand.textContent = product.brand || product.category || '';
+        productPrice.textContent = `$${(product.price || 0).toLocaleString('es-AR')}`;
+        productInstallments.textContent = `6 cuotas sin interés de $${((product.price || 0) / 6).toLocaleString('es-AR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+        productDescription.textContent = product.description || '';
 
         // funcionalidad del botón añadir a la bolsa
         if (addButton) {
             addButton.addEventListener('click', () => {
-                addToCart(product.id);
+                // Si el producto vino desde Airtable, añadimos usando recordId al carrito
+                if (productFromAirtable && product.recordId) {
+                    const cart = getCart();
+                    const existing = cart.find(i => i.recordId === product.recordId);
+                    if (existing) existing.qty = (existing.qty || 0) + 1;
+                    else cart.push({ recordId: product.recordId, name: product.name, price: product.price, image: product.image, qty: 1 });
+                    saveCart(cart);
+                } else {
+                    addToCart(product.id);
+                }
                 // cambia a añadido cuando agregás el producto
                 const originalText = addButton.textContent;
                 addButton.textContent = '¡Añadido!';

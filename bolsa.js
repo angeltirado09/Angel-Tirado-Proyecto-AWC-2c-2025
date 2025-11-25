@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function getCart() {
         try {
-            // Reutilizamos la misma lógica que en aplicacion.js
+            //utilizamos try catch por si el JSON esta mal formado
             return JSON.parse(localStorage.getItem('cart')) || [];
         } catch {
             return [];
@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
     function saveCart(cart) {
         localStorage.setItem('cart', JSON.stringify(cart));
         window.dispatchEvent(new Event('storage'));
-        // esto nos ayuda a notificar a otras pestañas alguna actualizacion
+        // notifica si hubo un cambio en el carrito
     }
 
     // funciones para renderizar y actualizar
@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function renderItems() {
         const cart = getCart();
-        itemsListContainer.innerHTML = ''; // Limpiamos el contenedor
+        itemsListContainer.innerHTML = ''; 
 
         if (cart.length === 0) {
             itemsListContainer.innerHTML = '<p class="bolsa-vacia-msg">Tu bolsa de compras está vacía.</p>';
@@ -41,7 +41,9 @@ document.addEventListener("DOMContentLoaded", () => {
         cart.forEach(item => {
             const itemDiv = document.createElement('div');
             itemDiv.classList.add('bolsa-item');
-            itemDiv.dataset.id = item.id;
+            // se usa el id o recordId segun corresponda del item desde el airtable para poder agregarlo a la bolsa
+            const itemKey = (item.id !== undefined && item.id !== null) ? String(item.id) : String(item.recordId || '');
+            itemDiv.dataset.id = itemKey;
 
             itemDiv.innerHTML = `
                 <div class="bolsa-item-img">
@@ -89,12 +91,15 @@ document.addEventListener("DOMContentLoaded", () => {
     // manejadores de eventos, ejemplo si se agrega o quitan productos del carrito, esta serían las funciones que manejarían esos eventos
 
     function addEventListenersToItems() {
-        // Evento para eliminar un item
+        // eliminar un item
         document.querySelectorAll('.btn-eliminar').forEach(button => {
             button.addEventListener('click', (e) => {
                 const itemId = e.target.closest('.bolsa-item').dataset.id;
                 let cart = getCart();
-                cart = cart.filter(item => item.id != itemId);
+                cart = cart.filter(item => {
+                    const key = (item.id !== undefined && item.id !== null) ? String(item.id) : String(item.recordId || '');
+                    return key !== itemId;
+                });
                 saveCart(cart);
                 renderItems();
             });
@@ -106,14 +111,20 @@ document.addEventListener("DOMContentLoaded", () => {
                 const itemId = e.target.closest('.bolsa-item').dataset.id;
                 const newQty = parseInt(e.target.value, 10);
                 let cart = getCart();
-                
-                const itemInCart = cart.find(item => item.id == itemId);
+
+                const itemInCart = cart.find(item => {
+                    const key = (item.id !== undefined && item.id !== null) ? String(item.id) : String(item.recordId || '');
+                    return key === itemId;
+                });
                 if (itemInCart) {
                     if (newQty > 0) {
                         itemInCart.qty = newQty;
                     } else {
                         // Si la cantidad es 0 o menos, eliminamos el item
-                        cart = cart.filter(item => item.id != itemId);
+                        cart = cart.filter(item => {
+                            const key = (item.id !== undefined && item.id !== null) ? String(item.id) : String(item.recordId || '');
+                            return key !== itemId;
+                        });
                     }
                 }
                 saveCart(cart);

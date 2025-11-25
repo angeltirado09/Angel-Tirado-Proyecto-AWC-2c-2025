@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     showMessage(registerMessage, "Este email ya está registrado.", "error");
                 } else {
                     // Agregar nuevo usuario
-                    const newUser = { name, email, password }; // NUNCA guardes contraseñas así en producción
+                    const newUser = { name, email, password }; 
                     users.push(newUser);
                     localStorage.setItem('laEsenciaUsers', JSON.stringify(users));
                     
