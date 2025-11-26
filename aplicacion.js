@@ -1,7 +1,9 @@
-//Airtable
-    const airtableToken = 'patCZdCvB2srAXTe1.4451010d1ce059acb4c011ccd404b29478d76d4ea2f80d87abffb55efaa27423';
-    const baseID = 'app0yz4FNhIC5VUu5';
-    const tableName = 'Productos';
+import { AIRTABLE_TOKEN, BASE_ID, TABLE_NAME } from './env.js';
+
+//Airtable configuracion
+    const airtableToken = AIRTABLE_TOKEN;
+    const baseID = BASE_ID;
+    const tableName = TABLE_NAME;
     const airtableUrl = `https://api.airtable.com/v0/${baseID}/${tableName}`;
 
 // se deja comentario para tener track del avance realizado 23/11/2025
@@ -117,6 +119,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const productContainer = document.querySelector('.product-section');
         if (!productContainer) console.warn('No existe .product-section en el DOM');
 
+        // Catalogo de productos desde mi api de Airtable
         async function getProductsFromAirtable() {
             try {
                 const response = await fetch(airtableUrl, {
