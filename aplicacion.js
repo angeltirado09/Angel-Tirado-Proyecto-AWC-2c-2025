@@ -1,6 +1,7 @@
 import { AIRTABLE_TOKEN, BASE_ID, TABLE_NAME } from './env.js';
 
 //Airtable configuracion
+
     const airtableToken = AIRTABLE_TOKEN;
     const baseID = BASE_ID;
     const tableName = TABLE_NAME;
