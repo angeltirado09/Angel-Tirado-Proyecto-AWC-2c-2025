@@ -10,6 +10,13 @@
     "YTLC" 500;
 }
 
+.main-favoritos {
+    padding: 40px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 /* Reseteo básico para eliminar márgenes y padding */
 body, html {
     margin: 0;
@@ -291,6 +298,14 @@ nav div {
     text-decoration: none;
 }
 /* Botón "Añadir a la bolsa" en cada producto */
+.product-actions {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
 .product-actions button {
     background-color: #3E0703;
     color: #FEFEFF;
@@ -299,9 +314,35 @@ nav div {
     border-radius: 10px;
     cursor: pointer;
     transition: background-color 0.3s;
+}
+
+.product-actions .product-cart-btn {
+    flex: 1;
+    min-width: 150px;
 
     &:hover {
         background-color: #660B05;
+    }
+}
+
+.product-actions .product-favorite-btn {
+    background-color: #FEFEFF;
+    color: #3E0703;
+    border: 2px solid #3E0703;
+    padding: 8px 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 50px;
+    transition: all 0.3s;
+
+    &:hover {
+        background-color: #f5f5f5;
+    }
+
+    &.is-favorited {
+        background-color: #3E0703;
+        color: #FEFEFF;
     }
 }
 

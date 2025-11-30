@@ -10,6 +10,7 @@
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+    <link rel="icon" type="image/png" href="/imagenes/LaEsencia_favicon.png">
 </head>
 
 
@@ -23,7 +24,7 @@
             </div>
             <div class="search-container">
                 <form action="" method="GET" class="search-form">
-                <input type="search" name="buscador" placeholder="Valentino..." />
+                <input id="input-search-products" type="search" name="buscador" placeholder="Valentino..." />
                 <button class="button-nav">
                 <i class="fa fa-search"></i>
                 </button>
@@ -45,10 +46,9 @@
                 <!-- Menú de categorías debajo del header -->
             <nav class="categorias-nav">
                 <ul>
-                    <li><a href="#">Perfumes Mujer</a></li>
-                    <li><a href="#">Perfumes Hombre</a></li>
-                    <li><a href="#">Unisex</a></li>
-                    <li><a href="#">Marcas</a></li>
+                    <li id="perfumes-mujer"><a href="#">Perfumes Mujer</a></li>
+                    <li id="perfumes-hombre"><a href="#">Perfumes Hombre</a></li>
+                    <li id="unisex"><a href="#">Unisex</a></li>
                 </ul>
             </nav>
 

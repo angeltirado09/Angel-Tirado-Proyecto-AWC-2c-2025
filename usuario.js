@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             // registro
             registerForm.addEventListener("submit", (e) => {
-                e.preventDefault(); // Prevenir envío de formulario
+                e.preventDefault(); // prevenir envio
                 
                 // Obtener valores
                 const name = document.getElementById("register-name").value;
@@ -14,10 +14,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 const password = document.getElementById("register-password").value;
 
                 // Obtener usuarios existentes
-                let users = JSON.parse(localStorage.getItem('laEsenciaUsers')) || [];
+                let users = JSON.parse(localStorage.getItem('laEsenciaUsers')) || []; //busca los datos almacenados en el localstorage 'laEsenciaUsers' y los convierte en un array.
 
                 // Verificar si el email ya existe
-                const userExists = users.find(user => user.email === email);
+                const userExists = users.find(user => user.email === email); // busca si el email ya está registrado
 
                 if (userExists) {
                     showMessage(registerMessage, "Este email ya está registrado.", "error");
