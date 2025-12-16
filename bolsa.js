@@ -15,13 +15,14 @@ document.addEventListener("DOMContentLoaded", () => {
     // Estas funciones se encargan de guardar y recuperar el carrito desde localStorage
 
     // Recupera la bolsa de compras desde localStorage. Obtiene el valor almacenado en 'cart' y lo parsea como JSON. y try/catch por si el JSON esta mal formado para siempre devolver un array valido.
+    // En CRUD esta funcion es R de Read
     function getCart() {
         // Obtiene el carrito del localStorage y lo convierte en un array
         try {
             //utilizamos try catch por si el JSON esta mal formado
             return JSON.parse(localStorage.getItem('cart')) || [];
         } catch {
-            return [];
+            return []; // si hay error al parsear, devuelve un array vacio
         }
     }
 
@@ -173,7 +174,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // ========================================
     // Cuando el usuario hace clic en "Vaciar Bolsa", pedimos confirmación y limpiamos todo
 
-    vaciarBolsaBtn.addEventListener('click', () => {
+    vaciarBolsaBtn.addEventListener('click', () => { // En CRUD esta funcion es D de Delete
         // se pide confirmacion
         if (confirm('¿Estás seguro de que quieres vaciar tu bolsa?')) {
             saveCart([]); 

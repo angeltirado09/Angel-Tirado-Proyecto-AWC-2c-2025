@@ -21,7 +21,7 @@ import { AIRTABLE_TOKEN, BASE_ID, TABLE_NAME } from './env.js';
     }
 
     // Guarda la bolsa de compras en localStorage. Convierte el array 'cart' a una cadena JSON y lo almacena en 'cart'. Luego llama a renderCartCount para actualizar el contador del carrito.
-    function saveCart(cart) {
+    function saveCart(cart) { // Guarda el carrito en localStorage y actualiza el contador del carrito. En CRUD esta funcion es C de Create y U de Update
         localStorage.setItem('cart', JSON.stringify(cart));
         renderCartCount();
     }
@@ -149,7 +149,7 @@ import { AIRTABLE_TOKEN, BASE_ID, TABLE_NAME } from './env.js';
 
         // Variables para filtrado y búsqueda
         let listProducts = []; // se llenará un array con productos de Airtable
-        const currentFilters = { text: '', category: '' };
+        const currentFilters = { text: '', category: '', brands: [] };
 
         // Setup buscador
         const inputSearch = document.getElementById('input-search-products');
@@ -162,10 +162,20 @@ import { AIRTABLE_TOKEN, BASE_ID, TABLE_NAME } from './env.js';
 
         // función para filtrar productos según filtros actuales, esto lo utiliza el buscador y los filtros de categoría
         function filterProducts() {
-            return listProducts.filter(product =>
+            const filteredByCategoryAndText = listProducts.filter(product =>
                 product.name.toLowerCase().includes(currentFilters.text) &&
                 (currentFilters.category === '' || product.category.toLowerCase() === currentFilters.category)
             );
+
+            if (currentFilters.brands.length === 0) {
+                return filteredByCategoryAndText;
+            }
+
+            const finalList = filteredByCategoryAndText.filter(product => { // lista final filtrada por marcas
+                const productBrand = (product.brand || '').trim().toLowerCase(); // limpia los espacios y pasa a minusculas
+                return currentFilters.brands.includes(productBrand); // verifica si la marca del producto está en las marcas seleccionadas
+            });
+            return finalList;
         }
 
         // setup filtros de categoria barra superior (hombre, mujer, unisex, marcas)
@@ -173,7 +183,6 @@ import { AIRTABLE_TOKEN, BASE_ID, TABLE_NAME } from './env.js';
         const perfumesMujerBtn = document.getElementById('perfumes-mujer');
         const perfumesHombreBtn = document.getElementById('perfumes-hombre');
         const unisexBtn = document.getElementById('unisex');
-        const marcasBtn = document.getElementById('marcas');
         if (categoryFilters) {
             perfumesMujerBtn && perfumesMujerBtn.addEventListener('click', () => {
                 currentFilters.category = 'mujer';
@@ -187,81 +196,101 @@ import { AIRTABLE_TOKEN, BASE_ID, TABLE_NAME } from './env.js';
                 currentFilters.category = 'unisex';
                 renderProducts(filterProducts());
             });
-            marcasBtn && marcasBtn.addEventListener('click', () => {
-                currentFilters.category = 'marcas';
-                renderProducts(filterProducts());
-            });
         }
 
 
-        // Catalogo de productos desde mi api de Airtable
-        async function getProductsFromAirtable() {
+        //*********** setup filtros de categoria menu de filtros izquierdo (marcas)************//
+        const brandFilters = document.querySelectorAll('.filtro-marca input[name="marca"]'); // selecciona todas las marcas de la categoria .filtro-marca
+
+        function marcaCheckbox() {      // función para manejar el cambio en los checkboxes de marca
+            const selectedBrands = Array.from(brandFilters) // array para guardar las marcas seleccionadas en checkboxes
+                .filter(checkbox => checkbox.checked) // filtra solo las marcas que están seleccionadas en checkbox
+                .map(checkbox => checkbox.value.toLowerCase()); // mapea los valores de las marcas seleccionadas a minúsculas
+            currentFilters.brands = selectedBrands; // actualiza los filtros actuales con las marcas seleccionadas
+            renderProducts(filterProducts()); //trae los productos filtrados y los renderiza
+        }
+
+        if (brandFilters.length > 0) {  // verifica que haya checkboxes de marca
+            brandFilters.forEach(checkbox => { // agrega un event listener a cada checkbox de marca
+                checkbox.addEventListener('change', marcaCheckbox); // llama a marcaCheckbox cuando cambia el estado del checkbox
+            });
+        } else {
+            console.warn('No se encontraron productos para el filtro seleccionado. Por favor, intente con otro.'); // advertencia si no hay checkboxes de marca
+        }
+
+
+
+
+
+        // Catalogo de productos desde mi api de Airtable mediante fetch
+        // el async lo que hace es avisar que la función es asíncrona y que va a haber esperas dentro de la función
+        async function getProductsFromAirtable() { // realiza una función asíncrona para obtener los productos desde Airtable
             try {
-                const response = await fetch(airtableUrl, {
+                const response = await fetch(airtableUrl, {     // await para esperar la respuesta de fetch antes de continuar
                     headers: {
                         'Authorization': `Bearer ${airtableToken}`,
                         'Content-Type': 'application/json'
                     }
                 });
 
-                // manejo de errores de fetch
+                // manejo de errores de fetch para la llamada a Airtable
                 if (!response.ok) {
-                    const text = await response.text();
+                    const text = await response.text(); // obtener el texto de la respuesta para más detalles del error
                     console.error('Airtable responded with', response.status, text);
-                    productContainer && (productContainer.innerHTML = '<p>Error cargando productos. Revisa la consola.</p>');
+                    productContainer && (productContainer.innerHTML = '<p>Error cargando productos. Por favor intente de nuevo mas tarde</p>'); // muestra mensaje de error en la página. Si falla, salta al catch
                     return;
                 }
 
-                const data = await response.json(); 
-                console.log('Products from Airtable:', data); 
+                const data = await response.json();  // si la respuesta desde airtable es ok, parsea el JSON de la respuesta para que javaScript lo pueda interpretar
 
-                if (!data.records) {
-                    console.error('Respuesta de Airtable sin records', data);
-                    productContainer && (productContainer.innerHTML = '<p>No hay productos.</p>');
+                if (!data.records) { //si no hay records en la respuesta de airtable, muestra mensaje de error
+                    console.error('Respuesta de Airtable sin records', data); // muestra en consola que no hay records
+                    productContainer && (productContainer.innerHTML = '<p>No hay productos disponibles para mostrar.</p>'); // muestra mensaje en la página
                     return;
                 }
 
                 // Mapeo de los productos desde Airtable al formato deseado
-                const mappedProducts = data.records.map((item, idx) => {
-                    const f = item.fields || {};
+                const mappedProducts = data.records.map((item, idx) => { // recorre cada producto de airtable y lo mapea a un objeto producto con los campos necesarios
+                    const f = item.fields || {}; // accede a los campos del producto desde airtable
                     // extraer url si el campo es un attachment
-                    let image = '';
-                    const imgField = f.Img || f.Image || f.Images || f.img;
-                    if (Array.isArray(imgField) && imgField.length > 0) image = imgField[0].url || imgField[0].thumbnails?.large?.url || '';
-                    else if (typeof imgField === 'string') image = imgField;
+                    let image = ''; // inicia una variable vacía para las imagenes de los productos
+                    const imgField = f.Img || f.Image || f.Images || f.img; // intenta obtener el campo de imagen desde varios nombres posibles
+                    if (Array.isArray(imgField) && imgField.length > 0) image = imgField[0].url || imgField[0].thumbnails?.large?.url || '';  // si es un array que contiene attachments, obtiene la url del primero
+                    else if (typeof imgField === 'string') image = imgField; // si es una cadena, la usa directamente como url
 
 
-                    //Mapeo de campos de Airtable a objeto producto
+                    //Mapeo de campos de Airtable a objeto producto de la aplicación
                     return {
                         recordId: item.id, // id de Airtable
                         name: f.Name || f.Title || 'Sin nombre',
-                        price: f.Price || f.Precio || 0,
+                        price: f.Price || f.Precio || f.price || 0,
                         image: image,
                         category: f.Category || f.Genero || '',
-                        brand: f.Brand || f.Marca || '',
+                        brand: f.Brand || f.Marca || f.brand || '',
                         description: f.Description || f.Descripción || f.description || ''
                     };
                 });
 
-                // Guardar en listProducts para que el buscador funcione
+                // Guardar en la variable listProducts los productos mapeados para que el buscador funcione
                 listProducts = mappedProducts;
 
                 // Guardar en localStorage para que producto.html lo lea
-                try 
+                try // usa try/catch por si hay error al guardar en localStorage
                 { 
-                    localStorage.setItem('productsAirtable', JSON.stringify(mappedProducts)); 
-                } catch (e) { 
-                    console.warn('No se pudo guardar productsAirtable en localStorage', e); 
+                    localStorage.setItem('productsAirtable', JSON.stringify(mappedProducts)); // guardar productos de Airtable en localStorage mediante un jSON.stringify
+                } catch (e) { // si hay error, lo muestra en consola
+                    console.warn('No se pudo guardar productos del API de Airtable. Por favor, intente de nuevo mas tarde.', e); // muestra advertencia en consola
                 }
 
                 // render inicial (o filtrado si hay texto en el buscador)
-                renderProducts(filterProducts());
+                renderProducts(filterProducts()); // llama a la funcion para renderizar productos filtrados
+
                 // actualizar los botones de favoritos para mostrar cuáles están marcados
                 updateFavoriteButtons();
                 }
-                catch (error) {
-                console.error('Ocurrió un error al obtener los productos desde Airtable', error);
-                productContainer && (productContainer.innerHTML = '<p>Error cargando productos. Intente refrescando la página.</p>');
+            catch (error) { // captura cualquier error en la llamada a fetch o en el procesamiento de datos por si no funciona la llamada a Airtable
+            console.error('Ocurrió un error al obtener los productos desde Airtable', error);
+            productContainer && (productContainer.innerHTML = '<p>Error cargando productos. Intente de nuevo más tarde.</p>');
             }
         }
 

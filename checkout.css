@@ -1,0 +1,185 @@
+/* Heredamos variables y reset de styles.css, pero definimos específicos */
+
+body {
+    background-color: #f9f9f9; /* Un poco más gris para diferenciar áreas */
+}
+
+h1 {
+    font-family: "Nunito Sans", sans-serif;
+    color: #3E0703;
+}
+
+.header-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.checkout-main {
+    padding: 40px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    justify-content: center;
+}
+
+.checkout-container {
+    display: grid;
+    grid-template-columns: 2fr 1fr; /* Izquierda ancha, derecha angosta */
+    gap: 40px;
+}
+
+/* --- TÍTULO --- */
+.titulo-checkout {
+    font-family: "Nunito Sans", sans-serif;
+    color: #3E0703;
+    margin-bottom: 20px;
+    font-size: 2rem;
+}
+
+/* --- SECCIONES DEL FORMULARIO --- */
+.form-section {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    margin-bottom: 30px;
+}
+
+.form-section h2 {
+    font-size: 1.3rem;
+    color: #3E0703;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+.form-section h2 i {
+    margin-right: 10px;
+}
+
+/* --- INPUTS Y LABELS --- */
+.form-group {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-row {
+    display: flex;
+    gap: 20px;
+}
+
+.form-row .form-group {
+    flex: 1; /* Crecen equitativamente */
+}
+
+.form-group.small {
+    flex: 0 0 100px; /* Tamaño fijo chico para altura/piso */
+}
+
+label {
+    font-size: 0.9rem;
+    color: #555;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+input, select {
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-family: "Nunito Sans", sans-serif;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+input:focus, select:focus {
+    border-color: #3E0703;
+    outline: none;
+}
+
+/* --- BOTÓN DE PAGO --- */
+.btn-pagar {
+    width: 100%;
+    padding: 18px;
+    background-color: #3E0703;
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: 700;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.1s;
+}
+
+.btn-pagar:hover {
+    background-color: #5a0a05;
+}
+
+.btn-pagar:active {
+    transform: scale(0.98);
+}
+
+/* --- RESUMEN (SIDEBAR) --- */
+.summary-card {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    position: sticky; /* Se queda fijo al scrollear */
+    top: 20px;
+    margin-top: 85px;
+}
+
+.summary-card h3 {
+    margin-top: 0;
+    color: #3E0703;
+}
+
+.summary-items {
+    max-height: 300px;
+    overflow-y: auto;
+    margin: 20px 0;
+}
+
+.summary-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.summary-item-name {
+    flex: 1;
+    padding-right: 10px;
+}
+
+.summary-total {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.4rem;
+    margin-top: 15px;
+    color: #3E0703;
+}
+
+.seguridad-info {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 0.8rem;
+    color: #888;
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 768px) {
+    .checkout-container {
+        grid-template-columns: 1fr; /* Una sola columna en móvil */
+    }
+
+    .summary-card {
+        position: static; /* Ya no es sticky en móvil */
+        order: -1; /* Pone el resumen arriba del formulario en móvil */
+        margin-bottom: 20px;
+    }
+}
