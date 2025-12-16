@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     
-    // 1. VERIFICACIÓN DE SEGURIDAD (Clase 9)
+    // VERIFICACIÓN DE SEGURIDAD
     // Si no hay carrito o está vacío, volver al inicio
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
     
@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
     }
 
-    // 2. AUTOCOMPLETADO DE USUARIO (Clase 9 - SessionStorage)
+    // AUTOCOMPLETADO DE USUARIO
     // Si el usuario ya inició sesión, rellenamos sus datos básicos
     const loggedUser = JSON.parse(sessionStorage.getItem('loggedInUser'));
     
@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Si tuvieras más datos guardados (como apellido), los pondrías aquí
     }
 
-    // 3. RENDERIZAR RESUMEN (Read de LocalStorage)
+    // RENDERIZAR RESUMEN (Read de LocalStorage)
     const itemsContainer = document.getElementById('checkout-items-list');
     const totalElement = document.getElementById('checkout-total');
     let total = 0;
@@ -44,16 +44,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // Mostrar Total
     totalElement.textContent = `$${total.toLocaleString('es-AR')}`;
 
-    // 4. MANEJO DEL FORMULARIO (Simulación CRUD - CREATE)
+    // MANEJO DEL FORMULARIO
     const form = document.getElementById('form-checkout');
 
     form.addEventListener('submit', (e) => {
         e.preventDefault();
 
-        // Aquí irían validaciones extra de JS (length de tarjeta, etc.)
-        
-        // Simulamos la petición al servidor (como vimos en Clase 8 con fetch/POST)
-        // const response = await fetch(url, { method: 'POST', body: ... })
         
         // Simulamos carga
         const btn = document.querySelector('.btn-pagar');
@@ -64,7 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => {
             // PROCESO DE ÉXITO
             
-            // A. Crear Objeto de la Orden (Lo que enviaríamos al backend)
+            // Crear Objeto de la Orden 
             const newOrder = {
                 orderId: Date.now(), // ID falso basado en timestamp
                 customer: {
@@ -76,21 +72,21 @@ document.addEventListener('DOMContentLoaded', () => {
                 date: new Date().toISOString()
             };
 
-            console.log("Orden Creada (Simulación POST):", newOrder);
+            console.log("Orden Creada:", newOrder);
 
-            // B. Limpiar Carrito (Clase 9 - Limpieza de estado)
+            // Limpiar Carrito
             localStorage.removeItem('cart');
             
-            // C. Feedback al usuario
+            // Feedback al usuario
             alert(`¡Gracias por tu compra ${document.getElementById('nombre').value}! \nTu pedido #${newOrder.orderId} ha sido confirmado.`);
             
-            // D. Redirección
+            // Redirección
             window.location.href = 'index.html';
             
         }, 2000); // Esperamos 2 segundos para simular red
     });
 
-    // 5. PEQUEÑO UI TWEAK: Formato visual de tarjeta (Opcional)
+    // FORMATO DE TARJETA DE CRÉDITO
     const cardInput = document.getElementById('numero-tarjeta');
     cardInput.addEventListener('input', (e) => {
         // Agrega espacios cada 4 números visualmente
